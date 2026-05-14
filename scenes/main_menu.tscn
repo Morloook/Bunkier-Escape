@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://df428okqyu4t0"]
+
+[ext_resource type="Script" uid="uid://cn0xookb0rnys" path="res://scripts/main_menu.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://d3cu1dptstn6t" path="res://scenes/options_panel.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://dbakc1ok6j6jk" path="res://img/menu.png" id="3"]
+
+[node name="MainMenu" type="Control" unique_id=603500527]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1955467675]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=925870854]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -135.0
+offset_right = 120.0
+offset_bottom = 135.0
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="VBox" unique_id=651212307]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "BUNKIER"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="VBox" unique_id=497605054]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 14
+text = "Escape Logic Game"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="VBox" unique_id=1496689406]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="VBox" unique_id=733784760]
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+text = "ROZPOCZNIJ GRĘ"
+
+[node name="LoadButton" type="Button" parent="VBox" unique_id=33650992]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+text = "Wczytaj grę"
+
+[node name="OptionsButton" type="Button" parent="VBox" unique_id=558438847]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+text = "Opcje"
+
+[node name="OptionsPanel" parent="VBox" unique_id=2099398538 instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="AboutButton" type="Button" parent="VBox" unique_id=725122045]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+text = "O grze / Autor"
+
+[node name="QuitButton" type="Button" parent="VBox" unique_id=1369194622]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+text = "Wyjście"

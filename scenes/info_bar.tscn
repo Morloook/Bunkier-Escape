@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cqx1vfaf1ot4h"]
+
+[ext_resource type="Script" uid="uid://mo4xh3jqk6lf" path="res://scripts/info_bar.gd" id="1"]
+
+[node name="InfoBar" type="CanvasLayer" unique_id=397947611]
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="." unique_id=244559720]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+color = Color(0.04, 0.04, 0.08, 0.95)
+
+[node name="BorderTop" type="ColorRect" parent="Background" unique_id=307157897]
+layout_mode = 0
+anchor_right = 1.0
+offset_bottom = 2.0
+color = Color(0.2, 0.4, 0.8, 0.6)
+
+[node name="HBox" type="HBoxContainer" parent="Background" unique_id=1606890053]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -8.0
+theme_override_constants/separation = 0
+
+[node name="PlayerLabel" type="Label" parent="Background/HBox" unique_id=259182528]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSep" type="VSeparator" parent="Background/HBox" unique_id=170657003]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="MessageLabel" type="Label" parent="Background/HBox" unique_id=1607475095]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 1, 0.5, 1)
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+vertical_alignment = 1

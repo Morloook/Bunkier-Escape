@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://boh8x7x25vfvu"]
+
+[ext_resource type="Script" uid="uid://dl3asjo1yweda" path="res://scripts/hud.gd" id="1"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1287028742]
+script = ExtResource("1")
+
+[node name="FpsLabel" type="Label" parent="." unique_id=446003427]
+visible = false
+offset_left = 6.0
+offset_top = 56.0
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+theme_override_font_sizes/font_size = 13
+text = "FPS: 0"
+
+[node name="TopBarBG" type="ColorRect" parent="." unique_id=759080008]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+color = Color(0.05, 0.05, 0.1, 0.92)
+
+[node name="TopBarBorder" type="ColorRect" parent="." unique_id=481799855]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 51.0
+offset_bottom = 53.0
+color = Color(0.2, 0.4, 0.8, 0.8)
+
+[node name="TopBar" type="HBoxContainer" parent="." unique_id=1540590166]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_right = -8.0
+offset_bottom = 52.0
+
+[node name="GiveUpBtn" type="Button" parent="TopBar" unique_id=2002258605]
+custom_minimum_size = Vector2(90, 36)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
+theme_override_font_sizes/font_size = 15
+text = "Poddaj się"
+
+[node name="GiveUpSaveSep" type="Control" parent="TopBar" unique_id=356637300]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="SaveBtn" type="Button" parent="TopBar" unique_id=190908542]
+custom_minimum_size = Vector2(76, 36)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "Zapisz"
+
+[node name="LeftFill" type="Control" parent="TopBar" unique_id=1326032220]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelsBox" type="HBoxContainer" parent="TopBar" unique_id=1853187089]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RoomLabel" type="Label" parent="TopBar/LabelsBox" unique_id=1003905021]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Pokój 1"
+
+[node name="Sep1" type="Label" parent="TopBar/LabelsBox" unique_id=1306777563]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.3, 0.5, 1)
+theme_override_font_sizes/font_size = 17
+text = "  |  "
+
+[node name="MovesLabel" type="Label" parent="TopBar/LabelsBox" unique_id=1543192797]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Ruchy: 0"
+
+[node name="Sep2" type="Label" parent="TopBar/LabelsBox" unique_id=772046381]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.3, 0.5, 1)
+theme_override_font_sizes/font_size = 17
+text = "  |  "
+
+[node name="TotalMovesLabel" type="Label" parent="TopBar/LabelsBox" unique_id=792031850]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Ruchy łącznie: 0"
+
+[node name="Sep3" type="Label" parent="TopBar/LabelsBox" unique_id=797491760]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.3, 0.5, 1)
+theme_override_font_sizes/font_size = 17
+text = "  |  "
+
+[node name="ResetsLabel" type="Label" parent="TopBar/LabelsBox" unique_id=1629709069]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Resetów: 0"
+
+[node name="RightFill" type="Control" parent="TopBar" unique_id=1069161000]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonsBox" type="HBoxContainer" parent="TopBar" unique_id=605138750]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="UndoLabel" type="Label" parent="TopBar/ButtonsBox" unique_id=1890604452]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87, 0.66, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "↩ 0/5"
+vertical_alignment = 1
+
+[node name="UndoBtn" type="Button" parent="TopBar/ButtonsBox" unique_id=241067114]
+custom_minimum_size = Vector2(76, 36)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "Cofnij"
+
+[node name="RestartBtn" type="Button" parent="TopBar/ButtonsBox" unique_id=1657538261]
+custom_minimum_size = Vector2(76, 36)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "Restart"
+
+[node name="MenuBtn" type="Button" parent="TopBar/ButtonsBox" unique_id=1945456281]
+custom_minimum_size = Vector2(76, 36)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "Menu"
