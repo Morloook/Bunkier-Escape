@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d3cu1dptstn6t"]
+
+[ext_resource type="Script" uid="uid://d3qccn8u2kamd" path="res://scripts/options_panel.gd" id="1"]
+
+[node name="OptionsPanel" type="PanelContainer" unique_id=1936700563]
+visible = false
+size_flags_horizontal = 4
+script = ExtResource("1")
+
+[node name="OptionsList" type="VBoxContainer" parent="." unique_id=1121450448]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DrawModeToggle" type="Button" parent="OptionsList" unique_id=1554215688]
+custom_minimum_size = Vector2(200, 36)
+layout_mode = 2
+focus_mode = 0
+text = "Tryb: Kafelki (Tile)"
+
+[node name="UnlimitedUndoToggle" type="Button" parent="OptionsList" unique_id=1226862041]
+custom_minimum_size = Vector2(200, 36)
+layout_mode = 2
+focus_mode = 0
+text = "Cofnij: limit 5"

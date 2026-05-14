@@ -1,0 +1,111 @@
+# TODO
+
+## Gotowe
+- [x] Struktura folderów projektu
+- [x] `constants.gd` — Cell enum, DIR_VECTORS (Autoload)
+- [x] `settings.gd` — SSOT dla wszystkich kolorów, czcionek, rozmiarów, timingów, flag (Autoload)
+- [x] `level_data.gd` — dane poziomu (sloty, skrzynki, drzwi, gracz)
+- [x] `level_generator.gd` — proceduralny generator pokoi metodą odwrotną, skalowanie trudności, walidacja BFS
+- [x] `game_state.gd` — mutowalny stan gry, pchnięcia, undo stack, wykrywanie otwarcia drzwi
+- [x] `board_renderer.gd` — renderer przez `_draw()`, animacja gracza Tween (tryb fallback)
+- [x] `tile_renderer.gd` — renderer kaflowy (TileMapLayer × 3), sprite gracza kierunkowy z `img/`
+- [x] `game_controller.gd` — obsługa klawiatury (WASD + strzałki, Z, R), endless loop, sygnały
+- [x] `hud.gd` + `hud.tscn` — samowystarczalny HUD: etykiety wyśrodkowane, przyciski po prawej
+- [x] `options_panel.gd` + `options_panel.tscn` — panel opcji jako osobna scena (draw mode, limit cofnięć)
+- [x] `virtual_controls.gd` — D-pad z auto-repeat, tło zlewa się z grą
+- [x] `main_menu.gd` — ekran startowy z panelem opcji (instancja options_panel.tscn)
+- [x] `project.godot` — Autoload Constants + Settings, scena startowa, input actions
+- [x] Układ sceny: mapa (rozciągliwa) + panel D-pad po prawej + HUD na górze
+- [x] `.gitignore` — grafiki, dźwięki, wideo, cache Godot, archiwa, pliki tymczasowe i eksportu
+- [x] Naprawiono błędy startu: `renderer Nil`, kolejność `_ready()` / `call_deferred`, shadowed identifier
+- [x] Naprawiono sterowanie: podwójny ruch przy przyciskach, kolejność klawiszy (`_dir_stack`), fokus UI
+- [x] Naprawiono generator: reverse pulls — skrzynki nie blokują się; BFS sprawdza dojście do drzwi
+- [x] Naprawiono restart: zapamiętuje `_current_level`, odtwarza ten sam układ
+- [x] HUD: ruchy per poziom, ruchy łącznie (sesja), resety (sesja), limit cofnięć z licznikiem
+- [x] Opcje: przełącznik trybu renderowania (Tile / Draw), przełącznik limitu cofnięć (5 / ∞)
+- [x] Przycisk powrotu do menu w HUD
+- [x] `info_bar.gd` + `info_bar.tscn` — pasek komunikatów na dole ekranu (pełna szerokość); `show_message()` jako punkt wejścia dla przyszłych komunikatów
+- [x] Dźwięki: krok, pchnięcie skrzynki, aktywacja slotu, otwarcie drzwi (oraz menedżer audio i zapętlanie muzyki)
+- [x] `audio_manager.gd` — Autoload: BGM playlista shuffle + intro, SFX pula 8 odtwarzaczy, cooldown, pitch variance, losowe warianty
+- [x] Opcje audio: włączniki muzyki i SFX + suwaki głośności w `options_panel.gd`
+- [x] Dynamiczne skalowanie planszy + Camera2D — pełna plansza widoczna; przy bardzo dużych pokojach kamera śledząca gracza
+- [x] `video_player.gd` — globalny Autoload do odtwarzania wideo; `play()` i `play_random()`; pomiń ESC lub przycisk ✕
+- [x] Warianty wizualne kafelków — ściana (5 wariantów), podłoga (4 warianty), drzwi (2 warianty); losowane raz na pokój, spójne dla całej planszy
+- [x] `export_presets.cfg` — konfiguracja eksportu Windows (.exe), Android APK + AAB (Gradle), Linux (.x86_64); `package/unique_name="com.example.bunkierescape"`; keystore release `bunkier_release.jks`; `script_export_mode=1` (bytecode) we wszystkich presetach
+- [x] `project.godot` — stretch mode `canvas_items`/`expand`, rozdzielczość 1280×720, orientacja landscape na Android, renderer Vulkan+fallback D3D12
+- [x] Tło menu (`img/menu.png`) — `TextureRect` fullscreen w `main_menu.tscn`, zachowuje proporcje
+- [x] Ikona aplikacji (`img/ico.png` 1024×1024) — `project.godot`, Windows `.exe`, Android launcher
+- [x] Licznik FPS w HUD — `show_fps` w Settings, toggle w opcjach, Label w lewym górnym rogu
+- [x] `preloader.gd` — Autoload background-loading tileset (34 MB) i tekstur gracza; `get_res()` z fallbackiem
+- [x] Przycisk "Poddaj się" w HUD — ekran podsumowania z pokój / ruchy / cofnięcia / restarty; przyciski Menu i Zakończ grę
+- [x] Skalowanie D-pad — opcja -4..+4 w panelu opcji; panel rozszerza się w lewo, nie wypycha D-pada poza ekran
+- [x] Nazwa aplikacji zmieniona na `"Bunkier Escape"` w `project.godot`
+- [x] System zapisu/wczytywania gry — 5 slotów JSON (`save_manager.gd` Autoload), przycisk Zapisz w HUD, przycisk Wczytaj w menu głównym, potwierdzenie przed usunięciem slotu
+- [x] Wczytywanie odtwarza dokładny układ pokoju (serializacja `LevelData` przez `to_dict()`/`from_dict()`)
+- [x] Podzielony D-pad (opcja) — ↑↓ po lewej stronie ekranu, ←→ po prawej; `top_level=true` + `MOUSE_FILTER_IGNORE` by nie blokować kliknięć
+- [x] Skalowanie HUD na Androidzie (`android_scale_hud = 1.52`) i menu (`android_scale_menu = 1.5`) — stałe w `settings.gd`
+- [x] Skalowanie okien dialogowych (`android_scale_dialog = 2.2`) — imię, wczytaj, zapisz; cap do rozmiaru ekranu (95% viewportu); `await process_frame` zapewnia poprawny rozmiar panelu przed skalowaniem
+- [x] Zakazane pary kafelków ściana+podłoga (`FORBIDDEN_PAIRS` w `level_generator.gd`) — zapobiega zlewaniu wizualnemu; pierwsze dwa wpisy: `(2,1)+(0,10)`, `(2,1)+(2,10)`
+- [x] Drzwi zamykają się gdy skrzynka opuści slot po otwarciu drzwi (`_check_door()` w `game_state.gd`)
+- [x] Dwa typy beczek z osobnymi kratkami (para A: tile 5,5 + 5,3; para B: tile 3,6 + 6,9); obie pary mieszają się w jednym pokoju (każda beczka losuje niezależnie typ A lub B); tryb draw ma osobne kolory dla każdej pary
+- [x] Kratka B (tile 6,9) renderowana w 70% rozmiaru kafla przez osobną warstwę `_deco_b_layer` z przesunięciem centrującym; warstwa pod beczkami
+- [x] Komunikat w pasku InfoBar gdy beczka trafi na kratkę złego koloru (`wrong_slot_pushed` sygnał przez `GameState` → `GameController` → `InfoBar`)
+- [x] Dekoracje podłogi — tile (8,8), (8,9), (8,10), (0,5), (1,5) losowane na ~20% pól podłogi; losowy rozmiar 20–70% kafla, rotacja co 45°; przechowywane w `LevelData.floor_decorations`, renderowane przez `Sprite2D` + `AtlasTexture` na warstwie pod beczkami; serializowane do JSON
+- [x] Naprawiono tryb Draw — `board_renderer._ready()` usuwa dzieci pozostałe po `TileRenderer` (sprite gracza widoczny obok planszy)
+- [x] Zakazane pary kafelków rozszerzone: `(2,1)+(1,10)` dodane do `FORBIDDEN_PAIRS`
+- [x] Plamy oleju (ślizganie) — tile `(0,5)` i `(1,5)` jako mechnika; skrzynka wciśnięta na plamę jedzie aż do ściany/skrzynki/kratki; `slick_positions: Array[Vector2i]` w `LevelData`/`GameState`; od pokoju 3, max 4 plamy; opcja włącz/wyłącz w panelu opcji
+- [x] Nowe stany Cell — `CRATE_ON_SLOT_B=10`, `CRATE_B_ON_SLOT=11` — naprawia znikanie kratki po zdjęciu beczki z złego slotu
+- [x] Skalowanie ruchów mieszania — stałe `SHUFFLE_BASE/SHUFFLE_PER_ROOM/SHUFFLE_BONUS_10` w `settings.gd`; pokoje 0–20 rosną liniowo do 115 ruchów; po pokoju 20 +10 co 10 pokojów (nieskończone)
+- [x] Więcej ścian wewnętrznych — max z 8 do 12 (`mini(step4, 10)`); minimalna podłoga zmniejszona z 50% do 40%
+- [x] Tile `(7,10)` w dekoracjach podłogi — dodawany tylko od pokoju 20
+- [x] Plamy oleju renderowane jako Sprite2D — losowy rozmiar 15–70%, rotacja co 45°, deterministycznie z pozycji; usunięte z puli dekoracji podłogi
+- [x] Naprawiono sprite gracza w trybie Draw — `game_controller._apply_renderer()`: `set_script` → `child.free()` → jawne `call("_ready")`; gwarantuje czysty stan niezależnie od wersji Godota
+- [x] Walidacja pre-rozwiązanego poziomu po `_unshuffle` — sprawdza beczki A i B osobno; debug pokazuje ile na slocie / ile poza; odrzuca poziom jeśli wszystkie na miejscu
+- [x] Dekoracje podłogi nie losują się na plamach oleju — plamy generowane przed dekoracjami; pula dekoracji wyklucza `slick_positions`
+- [x] Rozmiar plam oleju wyciągnięty do `settings.gd` (`slick_scale_min`, `slick_scale_max`)
+- [x] Odstępy D-pada od krawędzi ekranu w `settings.gd` (`dpad_margin_right`, `dpad_margin_left`); działa dla trybu normalnego i split
+- [x] Domyślny tryb D-pada (`split_dpad = false` — podzielony wyłączony domyślnie, opcja dostępna w panelu)
+- [x] **Autoplay i weryfikacja poziomu** — przycisk "Poddaj się" odtwarza trasę wyliczoną w generatorze (`solution_path`) pokazując poprawne ułożenie wszystkich skrzynek przed ekranem podsumowania
+- [x] Wbudowanie fizyki ślizgania prosto w generator — wirtualny raycast uwzględniający plamy oleju przy odwrotnych pociągnięciach (`_unshuffle`)
+- [x] Walidacja generatora odrzucająca poziom, jeśli jakakolwiek beczka zasłoniła (ukryła) plamę oleju na pozycjach startowych
+- [x] Przypisywanie metadanej `is_fallback` na planszy testowej/awaryjnej, pozwalające zresetować poziom po jej pokonaniu zamiast przejścia w głąb bunkra
+- [x] **Podświetlenie beczek na właściwym slocie** — ramka `ColorRect` (grubość `HIGHLIGHT_BORDER_RATIO × tile`, min 2 px); kolor zielony para A / cyjan para B; opcja WŁ./WYŁ. (HighlightToggle) w panelu opcji; domyślnie WYŁ.
+- [x] **Numer wersji w menu głównym** — `APP_VERSION: String = "1.0"` w `settings.gd`; etykieta w prawym górnym rogu (`main_menu.gd: _add_version_label()` przez CanvasLayer)
+- [x] **Preset eksportu Android 2 (APK)** — identyczny z Android (AAB) poza `export_format=0` i ścieżką `export/Bunkier.apk`; keystore release skonfigurowany w `.godot/export_credentials.cfg`
+- [x] **Trwałość opcji** — `user://options.json` zapisywany przy każdej zmianie w panelu; wczytywany w `Settings._ready()`; fallback do wartości domyślnych; `show_fps` nie jest persystowany
+- [x] **Opcje i solution_path w zapisie gry** — slot zapisu zawiera snapshot opcji + pełną `solution_path`; po wczytaniu draw_mode stosowany przed `_apply_renderer()`, autoplay działa poprawnie
+
+- [x] **Imię gracza** — dialog "Podaj imię / ksywkę" przed nową grą w `main_menu.gd`; imię wyświetlane w TopBar HUD (etykieta `PlayerLabel`, kolor niebieskawa); domyślnie `"..."` gdy puste; zapisywane w slocie JSON (`player_name`); widoczne w opisie slotu przy wczytywaniu/zapisywaniu; kompatybilność wsteczna ze starymi zapisami (brak pola → `"..."`); skalowanie okna dialogowego na Androidzie (`android_scale_menu`)
+- [x] **Losowa szerokość planszy** — szerokość nie jest już deterministyczna; `_random_width()` w `level_generator.gd` losuje z pięciu tierów co 10 pokojów (8–10 / 9–11 / 10–13 / 11–14 / 12–16); zakresy w `Settings.ROOM_WIDTH_TIERS`
+- [x] **Ściany skalują się z szerokością** — `WALLS_PER_EXTRA_WIDTH = 2` w `settings.gd`; każdy kafel szerokości powyżej `ROOM_BASE_SIZE` dodaje 2 dodatkowe ściany wewnętrzne; zapobiega zbyt łatwym szerokim planszom
+
+- [x] **Efekty przejścia między pokojami** — 8 efektów losowanych przez `randi() % 8`: scan-line poziomy, fade, wipe pionowy, kurtyna pionowa, kurtyna pozioma, potrójne pasy, wipe odwrócony, błysk; pokój ładuje się między fazą zasłoniania a odsłaniania (`Callable between`)
+- [x] **Algorytm ścian — L/T-kształty** — główne ramię 3–6 kafli od `step=0`; 50% szans na gałąź prostopadłą 2–4 kafle; 60% losowy start; `segment_ends` max ostatnie 3; nieudane segmenty nie zapisują końca
+- [x] **Naprawa zamkniętych obszarów** — `_fix_enclosed_areas()` po ustawieniu drzwi; BFS od `door_inside` wykrywa odcięte pola; przenosi ścianę-most zamiast odrzucać poziom; debug log
+- [x] **Orientacja pozioma planszy** — `width = maxi(width, height + 2)`; eliminuje pokoje pionowe i kwadratowe
+- [x] **Ochrona przed ujemnym bonusem ścian** — `maxi(0, width - ROOM_BASE_SIZE)` w formule ścian wewnętrznych
+- [x] **Naprawa przejść — sub-pixel gap** — kurtyna pionowa/pozioma i potrójne pasy mają 1 px nakładki (`ceili+1`); scanline_h używa pełnej wysokości ekranu, switch pod pełnym przykryciem
+- [x] **Rozdzielenie zapisu gry od opcji** — slot JSON nie zawiera już opcji; opcje w `user://options.json`
+- [x] **Dobalansowanie trudności** — `WALLS_BASE` 9, `WALLS_MAX_EXTRA` 30, `WALLS_PER_EXTRA_WIDTH` 3; olej tiery 4–7:1, 8–11:0–2, …, 30+:1–5; `ROOM_GROWTH_STEP=7`, `ROOM_MAX_HEIGHT=11`; `ROOM_WIDTH_TIERS` tier0:7–11 … tier4:11–17
+- [x] **Imię gracza przeniesione do InfoBar** — `PlayerLabel` usunięty z HUD TopBar; InfoBar przebudowany na `HBoxContainer` z `PlayerLabel` (110 px, wycentrowany) + `VSeparator` + `MessageLabel`; `set_player_name()` jako API; imię ustawiane w `init()` z `SaveManager.player_name`
+- [x] **Naprawa "..." po wczytaniu zapisu** — `game_controller._ready()` przepisuje `player_name` z `pending_load` do `SM.player_name` przed czyszczeniem słownika; HUD i InfoBar czytają tylko `SM.player_name`
+- [x] **Odstęp między "Poddaj się" a "Zapisz"** — `GiveUpSaveSep` (Control 10 px) w `hud.tscn`; `save_btn` dodany do pętli `_scale_for_android()`
+- [x] **V-Sync wyłączany przy włączonym FPS** — `_apply_vsync()` w `options_panel.gd`; wywoływana przy starcie i przy zmianie togglea; `VSYNC_DISABLED` gdy `show_fps=true`, `VSYNC_ENABLED` gdy `false`
+- [x] **InfoBar powiększony na Androidzie** — `android_scale_info_bar` 1.15 → 1.265 (+10%)
+- [x] **D-pady wchodzą pod InfoBar na Androidzie** — `InfoBar.get_bar_height()` zwraca rzeczywistą wysokość po skalowaniu; `_adjust_layout_for_android()` ustawia `layout.offset_bottom` dynamicznie; lewy panel split D-pada oblicza `bottom_margin` z `get_bar_height()`
+- [x] **Pierwszy poziom nie dopasowuje się do ekranu** — nowa metoda `_load_first()` czeka 2 klatki (`await process_frame` ×2) zanim wyrenderuje pierwszy pokój; gwarantuje poprawny `MapArea.size`
+- [x] **Naprawa przejść — sub-pixel gap (poprawka)** — kurtyna pionowa/pozioma: panele pełnej wysokości/szerokości (`vp.y`/`vp.x`), oba jadą do pozycji 0; potrójne pasy: nakładka `+2` px
+- [x] **Spinner ładowania podczas przejść** — obracający się symbol ↻ (szary, 56 px, CanvasLayer 121) widoczny razem z animacją zakrywania ekranu; `_make_spinner_label()` w `game_controller.gd`
+- [x] **Refaktoryzacja — usunięcie duplikacji kodu** — `_reset_input()` i `_apply_level()` w `game_controller.gd`; `_blocks_push()` w `game_state.gd`; `_update_audio_btn()` w `options_panel.gd`; `_make_atlas_tex()` w `tile_renderer.gd`
+
+## Następne kroki
+- [ ] Obsługa pada (gamepad)
+
+## Backlog / pomysły
+- [ ] Różne typy przedmiotów (ciężkie / lekkie — różne zasady pchania)
+- [ ] Pułapki i elementy środowiska (przyciski aktywujące ściany)
+- [ ] Płyty naciskowe otwierające/zamykające ściany — stanie na płycie otwiera przejście, opuszczenie zamyka; skrzynka też aktywuje płytę
+- [ ] Tryb wyzwań z mierzonym czasem
+- [ ] Leaderboard lokalny (najlepszy wynik per pokój)
+- [ ] Edytor poziomów in-game
+- [ ] **Tryb Boss** — co X poziomów gracz i komputer dostają ten sam wygenerowany układ; wygrywa ten kto szybciej ułoży wszystkie skrzynki na slotach; AI rozwiązuje poziom optymalną ścieżką (BFS/A*), gracz musi ją pokonać manualnie

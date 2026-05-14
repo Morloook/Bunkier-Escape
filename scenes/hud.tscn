@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://hud_scene_001"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1")
+
+[node name="FpsLabel" type="Label" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+offset_left = 6.0
+offset_top = 56.0
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.4, 1.0, 0.4, 1.0)
+text = "FPS: 0"
+visible = false
+
+[node name="TopBarBG" type="ColorRect" parent="."]
+anchors_preset = 12
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_bottom = 52.0
+color = Color(0.05, 0.05, 0.10, 0.92)
+
+[node name="TopBarBorder" type="ColorRect" parent="."]
+anchors_preset = 12
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_top = 51.0
+offset_bottom = 53.0
+color = Color(0.2, 0.4, 0.8, 0.8)
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+anchors_preset = 12
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 8.0
+offset_right = -8.0
+offset_bottom = 52.0
+
+[node name="GiveUpBtn" type="Button" parent="TopBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(90, 36)
+focus_mode = 0
+text = "Poddaj się"
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(1.0, 0.35, 0.35, 1.0)
+
+[node name="GiveUpSaveSep" type="Control" parent="TopBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(10, 0)
+
+[node name="SaveBtn" type="Button" parent="TopBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(76, 36)
+focus_mode = 0
+text = "Zapisz"
+theme_override_font_sizes/font_size = 15
+
+[node name="LeftFill" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelsBox" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RoomLabel" type="Label" parent="TopBar/LabelsBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Pokój 1"
+
+[node name="Sep1" type="Label" parent="TopBar/LabelsBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "  |  "
+theme_override_colors/font_color = Color(0.3, 0.3, 0.5, 1.0)
+
+[node name="MovesLabel" type="Label" parent="TopBar/LabelsBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Ruchy: 0"
+
+[node name="Sep2" type="Label" parent="TopBar/LabelsBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "  |  "
+theme_override_colors/font_color = Color(0.3, 0.3, 0.5, 1.0)
+
+[node name="TotalMovesLabel" type="Label" parent="TopBar/LabelsBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Ruchy łącznie: 0"
+
+[node name="Sep3" type="Label" parent="TopBar/LabelsBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "  |  "
+theme_override_colors/font_color = Color(0.3, 0.3, 0.5, 1.0)
+
+[node name="ResetsLabel" type="Label" parent="TopBar/LabelsBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Resetów: 0"
+
+[node name="RightFill" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonsBox" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="UndoLabel" type="Label" parent="TopBar/ButtonsBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.87, 0.66, 0.0, 1.0)
+text = "↩ 0/5"
+vertical_alignment = 1
+
+[node name="UndoBtn" type="Button" parent="TopBar/ButtonsBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(76, 36)
+focus_mode = 0
+text = "Cofnij"
+theme_override_font_sizes/font_size = 15
+
+[node name="RestartBtn" type="Button" parent="TopBar/ButtonsBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(76, 36)
+focus_mode = 0
+text = "Restart"
+theme_override_font_sizes/font_size = 15
+
+[node name="MenuBtn" type="Button" parent="TopBar/ButtonsBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(76, 36)
+focus_mode = 0
+text = "Menu"
+theme_override_font_sizes/font_size = 15
+
